@@ -1,7 +1,13 @@
-FROM alpine
+FROM node:alpine
 
-RUN apk add --update nodejs
+WORKDIR /app
 
-COPY ./app.js /app/
+COPY ./package.json .
 
-CMD ["node", "/app/app.js"]
+RUN npm install
+
+COPY . .
+
+ENV PATH=$PATH:/app/node_modules/.bin
+
+CMD [ "nodemon", "app.js" ]
