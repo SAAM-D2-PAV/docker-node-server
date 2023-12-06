@@ -3,38 +3,12 @@
  docker build -t myapp .
  ```
 
-### Lancer un conteneur sur l'image
+### Vérifier le container
 ```console
-docker run -it myapp sh
-```
+docker image ls
+ ```
 
-### Lancer un container avec retour terminal host
-
-```console 
-docker run -d --name appnode -p 80:80 myapp
-```
-
-### Puis récupérer le terminal du container
-
-```console 
-docker exec -it appnode sh
-```
-
-### Stats et charge d'utilisation
-
-```console 
-docker container stats appnode
-```
-
-
-### Port host: port container
-
+### Lancer le container
 ```console
-docker run -p 8081:80 myapp
-```
-
-### Kill apahe sur l'host
-
-```console 
-sudo apachectl stop
-```
+docker run --name react -p 3000:3000 myreact
+ ```
