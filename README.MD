@@ -1,14 +1,10 @@
-### Construire l'image
+
+### Construire et/ou lancer le container avec persistance de donnée et ouverture du shell
 ```console
- docker build -t myapp .
+docker run --mount type=bind,source="$(pwd)"/data,target=/data -it alpine sh
  ```
 
-### Vérifier le container
+ ### Vérifier le container
 ```console
-docker image ls
- ```
-
-### Lancer le container
-```console
-docker run --name react -p 3000:3000 myreact
+ ls
  ```
