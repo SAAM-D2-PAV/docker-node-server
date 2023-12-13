@@ -1,39 +1,26 @@
-### Construire l'image
+### Construire l'image et lancer un conteneur sur l'image
 ```console
- docker build -t myapp .
+ docker compose up
  ```
 
-### Lancer un conteneur sur l'image
+ ```console
+ docker compose build
+ ```
+
+### 
 ```console
-docker run -it myapp sh
+docker compose run 'nom du service'
 ```
 
-### Lancer un container avec retour terminal host
+### Couper et supprimer les container
 
 ```console 
-docker run -d --name appnode -p 80:80 myapp
-```
-
-### Puis récupérer le terminal du container
-
-```console 
-docker exec -it appnode sh
-```
-
-### Stats et charge d'utilisation
-
-```console 
-docker container stats appnode
+docker compose down
 ```
 
 
-### Port host: port container
 
-```console
-docker run -p 8081:80 myapp
-```
-
-### Kill apahe sur l'host
+### Kill apache sur l'host
 
 ```console 
 sudo apachectl stop
