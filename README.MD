@@ -41,6 +41,15 @@ docker compose down -v
  › Press Enter to trigger a test run.
  ```
 
+ ### Container MongoDB
+ ```console
+  docker run -p 27018:27017 --name mongodb --mount type=volume,src=mydb,target=/data/db -d mongo
+
+  docker exec -it mongodb sh
+
+  docker container stop mongodb
+ ```
+
  ### Environnement de prod sur nginx 
  ```console
 docker compose -f docker-compose.prod.yml up
