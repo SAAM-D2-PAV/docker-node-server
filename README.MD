@@ -40,3 +40,8 @@ docker compose down -v
  › Press t to filter by a test name regex pattern.
  › Press Enter to trigger a test run.
  ```
+
+ ### Environnement de prod sur nginx 
+ ```console
+docker compose -f docker-compose.prod.yml up
+ ```
