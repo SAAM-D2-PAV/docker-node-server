@@ -1,23 +1,42 @@
-### Step 1 - Construire l'image
+### Construire l'image et lancer le container
 ```console
- docker build -t nom_de_l_image .
+ docker compose up --build
  ```
 
-### Vérifier le container
+### ou
 ```console
-docker image ls
+docker compose up
  ```
 
-### Step 2 - Lancer le container sur l'image
+### Serveur de tests
+
+#### Step 1 - récupérer l'id du container de test
 ```console
-docker run -it -p 3000:3000 --name nom_de_l_image nom_du_container
+docker container ls
  ```
 
- ### Step 3 - Lancer le container en live reload
+ #### Step 2 - attacher le second terminal
+```console
+docker container attach NOM_OU_ID
+ ```
+
+ ### Couper proprement 
  ```console
-docker run --name --rm nom_du_container -p  3000:3000 --mount type=bind,src="$(pwd)"/app,target=/app --mount type=volume,target=/app/node_modules nom_de_l_image
+docker compose down -v
  ```
-### exemple
-  ```console
-docker run --rm --name nodereactapplr -p 3000:3000 --mount type=bind,src="$(pwd)"/app,target=/app --mount type=volume,target=/app/node_modules nodereactapp
+
+ ### Interaction cli avec le serveur de test
+ ```console
+ -> docker container ls
+ -> docker attach ID / nom du container
+ -> ex docker attach 24866fddc722
+
+ Watch Usage
+ › Press f to quit "only failed tests" mode.
+ › Press o to only run tests related to changed files.
+ › Press q to quit watch mode.
+ › Press i to run failing tests interactively.
+ › Press p to filter by a filename regex pattern.
+ › Press t to filter by a test name regex pattern.
+ › Press Enter to trigger a test run.
  ```
