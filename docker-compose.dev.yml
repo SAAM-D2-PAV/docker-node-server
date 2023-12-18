@@ -11,6 +11,24 @@ services:
     volumes:
       - type: bind
         source: ./app
-        target: /home/node
+        target: /app
       - type: volume
-        target: /home/node/node_modules
+        target: /app/node_modules
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    volumes:
+      - type: bind
+        source: ./api/src
+        target: /app/src
+    ports:
+      - 3001:80
+  db:
+    image: mongo:7
+    volumes:
+      - type: volume
+        source: dbtest
+        target: /data/db
+volumes:
+  dbtest:
