@@ -1,19 +1,17 @@
-version: '3.9'
+version: "3.9"
 services:
-  app:
-    stdin_open: true
-    tty: true
-    ports:
-      - '3000:3000'
+  client:
     build:
+      context: ./client
       dockerfile: Dockerfile.dev
-      context: ./app
     volumes:
       - type: bind
-        source: ./app
-        target: /app
+        source: ./client
+        target: /home/node
       - type: volume
-        target: /app/node_modules
+        target: /home/node/node_modules
+    ports:
+      - 3000:3000
   api:
     build:
       context: ./api
@@ -30,5 +28,14 @@ services:
       - type: volume
         source: dbtest
         target: /data/db
+  reverse-proxy:
+    build:
+      context: ./reverse-proxy
+      dockerfile: Dockerfile.dev
+    ports:
+      - 80:80
+    depends_on:
+      - api
+      - db
 volumes:
   dbtest:

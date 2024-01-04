@@ -13,21 +13,12 @@ async function run() {
     console.log('CONNEXION DB OK !');
     count = client.db('test').collection('count');
   } catch (err) {
-    console.log(err.stack);
+    console.log('erreur');
   }
 }
 run().catch(console.dir);
 
 const app = express();
 
-app.get('/api/count', (req, res) => {
-  count.findOneAndUpdate({}, { $inc: { count: 1 } }, { returnNewDocument: true, upsert: true }).then((doc) => {
-    res.status(200).json(doc ? doc.count : 0);
-  })
-})
-
-app.all('*', (req, res) => {
-  res.status(404).end();
-})
 
 app.listen(80);
