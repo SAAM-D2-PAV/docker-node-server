@@ -21,3 +21,8 @@
 ```console
  docker compose -f docker-compose.dev.yml up --build
  ```
+
+ ### Connection aux containeurs
+```console
+# docker exec -it docker-node-server-client-1 sh
+``````
